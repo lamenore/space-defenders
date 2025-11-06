@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://cs53ncjebicr3"]
+
+[ext_resource type="Texture2D" uid="uid://k06jglv6j28v" path="res://assets/scenario/space_spheremaps/ringed_gas_giant_planet.png" id="1_ymmf7"]
+[ext_resource type="PackedScene" uid="uid://vbcw6d8w5sta" path="res://player.tscn" id="2_aslnn"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_aslnn"]
+panorama = ExtResource("1_ymmf7")
+
+[sub_resource type="Sky" id="Sky_gi2gs"]
+sky_material = SubResource("PanoramaSkyMaterial_aslnn")
+
+[sub_resource type="Environment" id="Environment_rsg4w"]
+background_mode = 2
+sky = SubResource("Sky_gi2gs")
+
+[node name="Fase1" type="Node3D"]
+
+[node name="Background" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_rsg4w")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Background"]
+transform = Transform3D(0.31248415, -0.32431325, 0.8928429, -0.27344024, 0.8694233, 0.4115089, -0.9097143, -0.37273267, 0.18300346, 4390.939, 467.0313, 16.440575)
+shadow_enabled = true
+
+[node name="Player" parent="Background" instance=ExtResource("2_aslnn")]
+transform = Transform3D(-0.00019197067, 0, 1, 0, 1, 0, -1, 0, -0.00019197067, 12.633175, 0, -0.34991717)
+
+[node name="Camera3D" type="Camera3D" parent="Background/Player"]
+transform = Transform3D(-1, 0, 8.742791e-08, 0, 1, 0, -8.742791e-08, 0, -1, 0, 4, -10)

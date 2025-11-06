@@ -21,7 +21,6 @@ points = PackedVector3Array(1.2888889, 0.75566864, -2.6218567, 2.1776907, 0.9332
 [node name="Player" type="Node3D"]
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
-motion_mode = 1
 script = ExtResource("1_onrkg")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]

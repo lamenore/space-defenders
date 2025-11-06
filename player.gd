@@ -15,18 +15,13 @@ func _physics_process(delta: float) -> void:
 	var direction = Vector3.ZERO
 	
 	if Input.is_action_pressed("move_down"):
-		direction.x -= 1
+		direction.y -= 1
 	if Input.is_action_pressed("move_up"):
-		direction.x += 1
-	if Input.is_action_pressed("move_left"):
-		direction.z -= 1
-	if Input.is_action_pressed("move_right"):
-		direction.z += 1
+		direction.y += 1
 		
 	if direction != Vector3.ZERO:
 		direction = direction.normalized()
 	
-	velocity.x = direction.x * SPEED
-	velocity.z = direction.z * SPEED
+	velocity.y = direction.y * SPEED
 	
 	move_and_slide()

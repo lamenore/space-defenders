@@ -18,12 +18,11 @@ sky = SubResource("Sky_gi2gs")
 [node name="Background" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_rsg4w")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Background"]
-transform = Transform3D(0.31248415, -0.32431325, 0.8928429, -0.27344024, 0.8694233, 0.4115089, -0.9097143, -0.37273267, 0.18300346, 4390.939, 467.0313, 16.440575)
-shadow_enabled = true
-
 [node name="Player" parent="Background" instance=ExtResource("2_aslnn")]
-transform = Transform3D(-0.00019197067, 0, 1, 0, 1, 0, -1, 0, -0.00019197067, 12.633175, 0, -0.34991717)
+transform = Transform3D(-2.1517002e-08, -0.4922516, 0.08768334, 0.5, -2.1855694e-08, -3.256753e-16, 3.832761e-09, 0.08768334, 0.4922516, 16.148176, 3.5211859, -15.497362)
 
-[node name="Camera3D" type="Camera3D" parent="Background/Player"]
-transform = Transform3D(-1, 0, 8.742791e-08, 0, 1, 0, -8.742791e-08, 0, -1, 0, 4, -10)
+[node name="Camera3D" type="Camera3D" parent="Background"]
+transform = Transform3D(0.00019188324, 0, -1, 0, 1, 0, 1, 0, 0.00019188324, 2.633175, 4, -0.34799746)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Background"]
+transform = Transform3D(-0.16690268, -0.1586719, -0.9731221, 0.031211816, 0.9856211, -0.16606313, 0.98547924, -0.058089297, -0.15955038, 0, 0, 0)

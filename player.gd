@@ -1,9 +1,12 @@
 extends CharacterBody3D
 
+@onready var projectile = preload("res://projectile.tscn")
+@onready var attach_projectile = $Area3D
+@onready var timer = $Timer
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -25,3 +28,9 @@ func _physics_process(delta: float) -> void:
 	velocity.y = direction.y * SPEED
 	
 	move_and_slide()
+
+
+func _on_timer_timeout() -> void:
+	var new_projectile = projectile.instantiate()
+	attach_projectile.add_child(new_projectile)
+	timer.start()

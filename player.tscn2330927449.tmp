@@ -48,7 +48,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -1, 2)
 shape = SubResource("ConvexPolygonShape3D_2hs0m")
 
 [node name="Area3D" type="Area3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2514604, -0.13532072, 3.9531376)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2514604, -0.13532072, 2.130448)
 
 [node name="Timer" type="Timer" parent="CharacterBody3D"]
 autostart = true

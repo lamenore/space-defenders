@@ -15,6 +15,10 @@ run/main_scene="uid://cs53ncjebicr3"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GGS="*res://addons/ggs/core/global_manager/global_manager.tscn"
+
 [input]
 
 move_up={

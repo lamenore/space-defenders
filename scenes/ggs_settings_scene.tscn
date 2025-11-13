@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://sf20qbgok5il"]
+
+[ext_resource type="PackedScene" uid="uid://ds06mwhee8ygm" path="res://ggs/components/slider/component_slider.tscn" id="1_7ey8p"]
+[ext_resource type="Resource" uid="uid://s5aiklsskjfi" path="res://ggs/game_settings/music_volume.tres" id="2_jb735"]
+
+[node name="GgsSettingsScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Slider" parent="." instance=ExtResource("1_7ey8p")]
+layout_mode = 0
+setting = ExtResource("2_jb735")

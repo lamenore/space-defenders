@@ -3,12 +3,15 @@
 [ext_resource type="PackedScene" uid="uid://pnhw7eex4wsm" path="res://assets/spaceships/Interstellar Runner/Projectile/projetil.glb" id="1_a85iw"]
 [ext_resource type="Script" uid="uid://m3rrvsc7q362" path="res://projectile.gd" id="1_qxf0c"]
 
-[node name="projectile" type="Node3D"]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
-
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+[node name="projectile" type="CharacterBody3D"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 script = ExtResource("1_qxf0c")
 
-[node name="projetil" parent="CharacterBody3D" instance=ExtResource("1_a85iw")]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+[node name="projetil" parent="." instance=ExtResource("1_a85iw")]
+transform = Transform3D(-4.371139e-09, 0, -0.1, 0, 0.1, 0, 0.1, 0, -4.371139e-09, 0, 0, 0)
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+transform = Transform3D(-4.371139e-09, 0, -0.1, 0, 0.1, 0, 0.1, 0, -4.371139e-09, 4.5503164e-08, 0, 0.5075942)
+aabb = AABB(-16.3538, -1, -1, 32.7076, 2, 2)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_screen_exited"]

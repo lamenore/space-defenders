@@ -1,8 +1,10 @@
 extends CharacterBody3D
 
-@onready var projectile = preload("res://projectile.tscn")
+@onready var projectile = preload("res://projectile.tscn") 
 
 const SPEED = 10
+
+var spawnedProjectiles: Array[Node] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -34,7 +36,14 @@ func _on_timer_timeout() -> void:
 	var newProjectile = projectile.instantiate()
 	var spawnArea = get_node("ProjectileSpawnPoint")
 	var timer = get_node("../Timer")
+	
 	newProjectile.rotation = spawnArea.rotation
 	get_tree().get_root().add_child(newProjectile)
 	newProjectile.global_position = Vector3(spawnArea.global_position.x, spawnArea.global_position.y, spawnArea.global_position.z + 3.0)
+	
+	spawnedProjectiles.append(newProjectile)
+	
 	timer.start()
+
+func delete_projectiles() -> void:
+	pass

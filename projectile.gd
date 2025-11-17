@@ -16,3 +16,7 @@ func _physics_process(delta: float) -> void:
 	var direction = Vector3(0, 0, 1)
 	velocity = direction.normalized() * SPEED
 	move_and_slide()
+
+
+func _on_screen_exited() -> void:
+	queue_free()

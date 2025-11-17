@@ -1,5 +1,9 @@
 extends CharacterBody3D
 
+@onready var projectile = preload("res://projectile.tscn")
+
+const SPEED = 10
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -10,7 +14,6 @@ func _process(delta: float) -> void:
 	pass
 	
 func _physics_process(delta: float) -> void:
-	const SPEED = 10
 	
 	var direction = Vector3.ZERO
 	
@@ -25,3 +28,13 @@ func _physics_process(delta: float) -> void:
 	velocity.y = direction.y * SPEED
 	
 	move_and_slide()
+
+
+func _on_timer_timeout() -> void:
+	var newProjectile = projectile.instantiate()
+	var spawnArea = get_node("ProjectileSpawnPoint")
+	var timer = get_node("../Timer")
+	newProjectile.rotation = spawnArea.rotation
+	get_tree().get_root().add_child(newProjectile)
+	newProjectile.global_position = Vector3(spawnArea.global_position.x, spawnArea.global_position.y, spawnArea.global_position.z + 3.0)
+	timer.start()

@@ -1,33 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://dfs41auw4oxtn"]
+[gd_scene load_steps=3 format=3 uid="uid://b2mmijes7uqe0"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j8qxq"]
-emission_enabled = true
-emission = Color(1, 1, 1, 1)
-emission_energy_multiplier = 16.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yb0qx"]
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_fy7do"]
-top_radius = 0.2
-bottom_radius = 0.2
-height = 1.5
-
-[sub_resource type="Skin" id="Skin_llj68"]
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_w5np0"]
-points = PackedVector3Array(0.2166667, 0.76175565, 0.073739626, -0.19010246, -0.6842515, -0.06171737, -0.21190476, -0.76175565, 0.073739626, -0.21190476, 0.76175565, 0.073739626, 0.073739626, 0.76175565, -0.21190476, 0.2166667, -0.76175565, -0.06897769, 0.073739626, -0.76175565, 0.2166667, -0.06897769, 0.76175565, 0.2166667, -0.16424842, -0.76175565, -0.16424842, -0.16424842, 0.76175565, -0.16424842, 0.073739626, -0.76175565, -0.21190476, 0.19283852, 0.76175565, -0.116634026, -0.116634026, -0.76175565, 0.19283852, 0.19283852, -0.76175565, 0.12139596, 0.12139596, 0.76175565, 0.19283852, 0.12139596, -0.76175565, -0.18807659, -0.18807659, 0.76175565, 0.12139596, 0.073739626, 0.76175565, 0.2166667, -0.06897769, -0.76175565, 0.2166667, 0.2166667, 0.76175565, -0.06897769, 0.2166667, -0.76175565, 0.073739626, -0.06171737, 0.6842515, -0.19010246, 0.12139596, -0.76175565, 0.19283852, -0.18807659, -0.76175565, 0.12139596, 0.12139596, 0.76175565, -0.18807659, -0.116634026, 0.76175565, 0.19283852, 0.19283852, -0.76175565, -0.116634026, 0.19283852, 0.76175565, 0.12139596, -0.06171737, -0.6842515, -0.19010246, -0.19010246, 0.6842515, -0.06171737)
+[ext_resource type="PackedScene" uid="uid://pnhw7eex4wsm" path="res://assets/spaceships/Interstellar Runner/Projectile/projetil.glb" id="1_a85iw"]
+[ext_resource type="Script" uid="uid://m3rrvsc7q362" path="res://projectile.gd" id="1_qxf0c"]
 
 [node name="projectile" type="Node3D"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+script = ExtResource("1_qxf0c")
+
+[node name="projetil" parent="CharacterBody3D" instance=ExtResource("1_a85iw")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_j8qxq")
-material_overlay = SubResource("StandardMaterial3D_yb0qx")
-mesh = SubResource("CylinderMesh_fy7do")
-skin = SubResource("Skin_llj68")
-skeleton = NodePath("")
-
-[node name="StaticBody3D2" type="StaticBody3D" parent="MeshInstance3D"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D2"]
-shape = SubResource("ConvexPolygonShape3D_w5np0")

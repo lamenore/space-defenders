@@ -46,3 +46,11 @@ shape = SubResource("ConvexPolygonShape3D_sweqy")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -1, 2)
 shape = SubResource("ConvexPolygonShape3D_2hs0m")
+
+[node name="ProjectileSpawnPoint" type="Area3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.26684672, 0, 3.074811)
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="CharacterBody3D" method="_on_timer_timeout"]

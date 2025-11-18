@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://k06jglv6j28v" path="res://assets/scenario/space_spheremaps/ringed_gas_giant_planet.png" id="1_ymmf7"]
 [ext_resource type="PackedScene" uid="uid://vbcw6d8w5sta" path="res://player.tscn" id="2_aslnn"]
-[ext_resource type="PackedScene" uid="uid://x3hhoi5hs8" path="res://scenes/pause_menu.tscn" id="3_gi2gs"]
+[ext_resource type="PackedScene" uid="uid://blbx3bxv7u3vj" path="res://scenes/pause_menu.tscn" id="3_gi2gs"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_aslnn"]
 panorama = ExtResource("1_ymmf7")
@@ -47,9 +47,7 @@ shape = SubResource("BoxShape3D_gi2gs")
 
 [node name="UpperLimit" type="StaticBody3D" parent="Background"]
 physics_material_override = SubResource("PhysicsMaterial_rsg4w")
-
 [node name="UpperLimitCollider" type="CollisionShape3D" parent="Background/UpperLimit"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.148, 13, 1.3483982)
 shape = SubResource("BoxShape3D_rsg4w")
-
-[node name="PauseMenu" parent="." instance=ExtResource("3_gi2gs")]
+[node name="pausemenu" parent="." instance=ExtResource("3_gi2gs")]

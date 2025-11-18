@@ -60,6 +60,5 @@ theme = ExtResource("2_myx47")
 text = "Sair"
 
 [connection signal="pressed" from="menuholder/resumebutton" to="." method="_on_resumebutton_pressed"]
-[connection signal="pressed" from="menuholder/settingsbutton" to="." method="_on_quitbutton_pressed"]
 [connection signal="pressed" from="menuholder/settingsbutton" to="." method="_on_settingsbutton_pressed"]
 [connection signal="pressed" from="menuholder/quitbutton" to="." method="_on_quitbutton_pressed"]

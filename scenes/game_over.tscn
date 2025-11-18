@@ -1,0 +1,229 @@
+[gd_scene load_steps=8 format=3 uid="uid://b1j3li01by76n"]
+
+[ext_resource type="Script" uid="uid://datcr4l5u3obe" path="res://scenes/game_over.gd" id="1_xeevv"]
+
+[sub_resource type="Animation" id="Animation_wqhvx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(408, 132)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../NewHighscoreLabel:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_tbwuq"]
+resource_name = "NewHighscoreAppear"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../NewHighscoreLabel:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(1.5333333, 1.8, 1.9666667),
+"transitions": PackedFloat32Array(2.070531, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.12, 1.12), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xeevv"]
+resource_name = "GameOverAppear"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.8333334),
+"transitions": PackedFloat32Array(0.39229217, 1),
+"update": 0,
+"values": [Vector2(408, 18), Vector2(408, 132)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.8333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tbwuq"]
+_data = {
+&"GameOverAppear": SubResource("Animation_xeevv"),
+&"NewHighscoreAppear": SubResource("Animation_tbwuq"),
+&"RESET": SubResource("Animation_wqhvx")
+}
+
+[sub_resource type="Animation" id="Animation_racf3"]
+resource_name = "NewHighscoreAppear"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(1.5333333, 1.8, 1.9666667),
+"transitions": PackedFloat32Array(2.070531, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.12, 1.12), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7m3ot"]
+_data = {
+&"NewHighscoreAppear": SubResource("Animation_racf3")
+}
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xeevv")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -168.0
+offset_top = 132.0
+offset_right = 168.0
+offset_bottom = 229.0
+grow_horizontal = 2
+bbcode_enabled = true
+text = "[shake rate=15.0 level=10][font_size={54}]GAME OVER[/font_size][/shake]"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="RichTextLabel"]
+libraries = {
+&"": SubResource("AnimationLibrary_tbwuq")
+}
+autoplay = "GameOverAppear"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -319.0
+offset_top = -88.0
+offset_right = 319.0
+offset_bottom = 155.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="PlayAgainBtn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 57
+text = "PLAY AGAIN"
+
+[node name="ReturnToMenuBtn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 57
+text = "RETURN TO MENU"
+
+[node name="NewHighscoreLabel" type="RichTextLabel" parent="."]
+top_level = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 309.0
+offset_top = -311.0
+offset_right = 601.53674
+offset_bottom = -168.9997
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.43982297
+pivot_offset = Vector2(145, 71)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.47058824)
+theme_override_constants/shadow_offset_x = 6
+theme_override_constants/shadow_offset_y = 7
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/normal_font_size = 42
+bbcode_enabled = true
+text = "[rainbow freq=0.3][wave amp=50.0]NEW HIGHSCORE![/wave][/rainbow]"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="NewHighscoreLabel"]
+libraries = {
+&"": SubResource("AnimationLibrary_7m3ot")
+}
+autoplay = "NewHighscoreAppear"
+
+[node name="NumberLabel" type="Label" parent="NewHighscoreLabel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -56.85177
+offset_top = -27.991821
+offset_right = 53.148224
+offset_bottom = 27.008179
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5764706)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 3
+theme_override_font_sizes/font_size = 40
+text = "___"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/PlayAgainBtn" to="." method="_on_play_again_btn_pressed"]
+[connection signal="button_up" from="VBoxContainer/ReturnToMenuBtn" to="." method="_on_return_to_menu_btn_button_up"]

@@ -17,6 +17,10 @@ sky_material = SubResource("PanoramaSkyMaterial_aslnn")
 [sub_resource type="Environment" id="Environment_rsg4w"]
 background_mode = 2
 sky = SubResource("Sky_gi2gs")
+tonemap_mode = 2
+glow_enabled = true
+glow_normalized = true
+glow_bloom = 0.88
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01qb0"]
 bg_color = Color(0, 0, 0, 1)

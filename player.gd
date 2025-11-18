@@ -17,7 +17,7 @@ func _process(_delta: float) -> void:
 	if Input.is_action_pressed("shoot") and can_shoot:
 		shoot()
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	var direction = Vector3.ZERO
 	
 	if Input.is_action_pressed("move_down") or Input.is_action_pressed("ui_down"):
@@ -29,6 +29,7 @@ func _physics_process(_delta: float) -> void:
 		direction = direction.normalized()
 	
 	velocity.y = direction.y * SPEED
+	rotation_degrees.z = move_toward(rotation_degrees.z, -15*direction.y, delta*20*abs(rotation_degrees.z+15*direction.y))
 	
 	direction.x = 0
 	

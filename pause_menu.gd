@@ -1,15 +1,26 @@
-extends Control
+extends CanvasLayer
 
-var pause_toggle = false
+@onready var resumebutton: Button = $menuholder/resumebutton
 
+# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	self.visible = false
+	visible = false
+	
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
 
-func _input(event: InputEvent) -> void:
-	if event.is_action("ui_cancel"):
-		pause_and_unpause()
 
-func pause_and_unpause():
-	pause_toggle = !pause_toggle
-	get_tree().paused = pause_toggle
-	self.visible = pause_toggle
+func _on_resumebutton_pressed() -> void:
+	get_tree().paused=false
+	visible = false
+
+
+func _unhandled_input(event):
+	if event.is_action_pressed("ui_cancel"):
+		visible = true
+		get_tree().paused = true
+		resumebutton.grab_focus()
+
+func _on_quitbutton_pressed() -> void:
+	get_tree().quit() # Replace with function body.

@@ -51,6 +51,5 @@ shape = SubResource("ConvexPolygonShape3D_2hs0m")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.26684672, 0, 3.074811)
 
 [node name="Timer" type="Timer" parent="."]
-autostart = true
 
 [connection signal="timeout" from="Timer" to="CharacterBody3D" method="_on_timer_timeout"]

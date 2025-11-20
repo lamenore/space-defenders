@@ -31,6 +31,6 @@ func _on_area_3d_body_entered(body):
 	if body.is_in_group("player") and not has_hit_player:
 		has_hit_player = true
 		body.take_damage(1)
-		$Area3D/CollisionShape3D.disabled = true
+		$Area3D/CollisionShape3D.set_deferred("disabled", true)
 		queue_free()
 		

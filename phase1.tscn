@@ -1,8 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://cs53ncjebicr3"]
+[gd_scene load_steps=13 format=3 uid="uid://cs53ncjebicr3"]
 
 [ext_resource type="Texture2D" uid="uid://k06jglv6j28v" path="res://assets/scenario/space_spheremaps/ringed_gas_giant_planet.png" id="1_ymmf7"]
 [ext_resource type="PackedScene" uid="uid://vbcw6d8w5sta" path="res://player.tscn" id="2_aslnn"]
 [ext_resource type="PackedScene" uid="uid://blbx3bxv7u3vj" path="res://scenes/pause_menu.tscn" id="3_gi2gs"]
+[ext_resource type="PackedScene" uid="uid://bevhdw5bai6pd" path="res://enemy.tscn" id="3_rsg4w"]
+[ext_resource type="Script" uid="uid://bt4gep170ejvr" path="res://enemy_spawner.gd" id="4_01qb0"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_aslnn"]
 panorama = ExtResource("1_ymmf7")
@@ -47,7 +49,18 @@ shape = SubResource("BoxShape3D_gi2gs")
 
 [node name="UpperLimit" type="StaticBody3D" parent="Background"]
 physics_material_override = SubResource("PhysicsMaterial_rsg4w")
+
 [node name="UpperLimitCollider" type="CollisionShape3D" parent="Background/UpperLimit"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.148, 13, 1.3483982)
 shape = SubResource("BoxShape3D_rsg4w")
+
+[node name="EnemySpawner" type="Node3D" parent="Background"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.148, 3.521, 20)
+script = ExtResource("4_01qb0")
+enemy_scene = ExtResource("3_rsg4w")
+
+[node name="Timer" type="Timer" parent="Background/EnemySpawner"]
+wait_time = 2.0
+autostart = true
+
 [node name="pausemenu" parent="." instance=ExtResource("3_gi2gs")]

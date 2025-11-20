@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://bevhdw5bai6pd"]
+
+[ext_resource type="Script" uid="uid://dqpti62aakhhd" path="res://enemy.gd" id="1_4gyqm"]
+[ext_resource type="PackedScene" uid="uid://qgrb5su4jeau" path="res://assets/enemies/LowPoly_SpiderBot_Rzenn.fbx" id="1_7k104"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rsg4w"]
+radius = 0.49023438
+height = 1.3862915
+
+[node name="Enemy" type="CharacterBody3D" groups=["enemies"]]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+script = ExtResource("1_4gyqm")
+
+[node name="LowPoly_SpiderBot_Rzenn" parent="." instance=ExtResource("1_7k104")]
+transform = Transform3D(-7.649493e-09, -0.175, 0, -0.175, 7.649493e-09, 1.5298985e-08, -1.5298985e-08, 6.687399e-16, -0.175, 0, 0, 0)
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2244601, -0.116516136, 0)
+shape = SubResource("CapsuleShape3D_rsg4w")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

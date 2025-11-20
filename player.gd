@@ -8,16 +8,19 @@ const SPEED = 10
 var spawnedProjectiles: Array[Node] = []
 var can_shoot = true
 
+var vida := 3
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_pressed("shoot") and can_shoot:
 		shoot()
 	
-func _physics_process(delta: float) -> void:
+	
+func _physics_process(_delta: float) -> void:
 	
 	var direction = Vector3.ZERO
 	
@@ -31,7 +34,10 @@ func _physics_process(delta: float) -> void:
 	
 	velocity.y = direction.y * SPEED
 	
+	direction.x = 0
+	
 	move_and_slide()
+	
 	
 func _on_timer_timeout():
 	can_shoot = true
@@ -48,3 +54,11 @@ func shoot() -> void:
 	spawnedProjectiles.append(newProjectile)
 	
 	timer.start()
+	
+func take_damage(amount: int):
+	vida -= amount
+	if vida <= 0:
+		die()
+		
+func die():
+	queue_free()

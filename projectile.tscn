@@ -1,17 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://b2mmijes7uqe0"]
+[gd_scene load_steps=4 format=3 uid="uid://b2mmijes7uqe0"]
 
 [ext_resource type="PackedScene" uid="uid://pnhw7eex4wsm" path="res://assets/spaceships/Interstellar Runner/Projectile/projetil.glb" id="1_a85iw"]
 [ext_resource type="Script" uid="uid://m3rrvsc7q362" path="res://projectile.gd" id="1_qxf0c"]
 
-[node name="projectile" type="CharacterBody3D"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qxf0c"]
+radius = 0.16552734
+height = 3.3815918
+
+[node name="projectile" type="CharacterBody3D" groups=["player"]]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 script = ExtResource("1_qxf0c")
 
-[node name="projetil" parent="." instance=ExtResource("1_a85iw")]
+[node name="projetil" parent="." groups=["player"] instance=ExtResource("1_a85iw")]
 transform = Transform3D(-4.371139e-09, 0, -0.1, 0, 0.1, 0, 0.1, 0, -4.371139e-09, 0, 0, 0)
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
 transform = Transform3D(-4.371139e-09, 0, -0.1, 0, 0.1, 0, 0.1, 0, -4.371139e-09, 4.5503164e-08, 0, 0.5075942)
 aabb = AABB(-16.3538, -1, -1, 32.7076, 2, 2)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 2.3515147e-08, -0.53796387)
+shape = SubResource("CapsuleShape3D_qxf0c")
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_screen_exited"]

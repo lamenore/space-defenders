@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@onready var resumebutton: Button = $menuholder/resumebutton
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -20,7 +20,11 @@ func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
 		visible = true
 		get_tree().paused = true
-		resumebutton.grab_focus()
+		
 
 func _on_quitbutton_pressed() -> void:
-	get_tree().quit() # Replace with function body.
+		get_tree().change_scene_to_file #mudar para a cena do menu
+
+
+func _on_settingsbutton_pressed() -> void:
+	get_tree().change_scene_to_file #mudar para a cena das configurações

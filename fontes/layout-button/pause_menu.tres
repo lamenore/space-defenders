@@ -1,0 +1,27 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://bf5nfbv5ecjfr"]
+
+[ext_resource type="FontFile" uid="uid://b8qutxe83je4" path="res://fontes/04B_20__.TTF" id="1_lwe8v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lwe8v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_840d5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p201k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vhphi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d0h1g"]
+
+[resource]
+Button/colors/font_color = Color(0.65833926, 0.6583402, 0.65833956, 1)
+Button/colors/font_focus_color = Color(0.29411766, 0, 0.50980395, 1)
+Button/colors/font_hover_color = Color(0.29411766, 0, 0.50980395, 1)
+Button/colors/font_pressed_color = Color(0.29411766, 0, 0.50980395, 1)
+Button/constants/h_separation = 63
+Button/font_sizes/font_size = 20
+Button/fonts/font = ExtResource("1_lwe8v")
+Button/styles/disabled = SubResource("StyleBoxEmpty_lwe8v")
+Button/styles/focus = SubResource("StyleBoxEmpty_840d5")
+Button/styles/hover = SubResource("StyleBoxEmpty_p201k")
+Button/styles/normal = SubResource("StyleBoxEmpty_vhphi")
+Button/styles/pressed = SubResource("StyleBoxEmpty_d0h1g")

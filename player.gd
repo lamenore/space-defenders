@@ -10,18 +10,14 @@ const SPEED = 10
 var spawnedProjectiles: Array[Node] = []
 var can_shoot = true
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if Input.is_action_pressed("shoot") and can_shoot:
 		shoot()
-	
-	
+
 func _physics_process(_delta: float) -> void:
-	
 	var direction = Vector3.ZERO
 	
 	if Input.is_action_pressed("move_down") or Input.is_action_pressed("ui_down"):
@@ -47,11 +43,11 @@ func shoot() -> void:
 	can_shoot = false
 	var newProjectile = projectile.instantiate()
 	var spawnArea = get_node("ProjectileSpawnPoint")
-		
+	
 	newProjectile.rotation = spawnArea.rotation
 	get_tree().get_root().add_child(newProjectile)
 	newProjectile.global_position = Vector3(spawnArea.global_position.x, spawnArea.global_position.y, spawnArea.global_position.z + 3.0)
-		
+	
 	spawnedProjectiles.append(newProjectile)
 	
 	timer.start()
@@ -60,6 +56,7 @@ func take_damage(amount: int):
 	vida.value -= amount
 	if vida.value <= 0:
 		die()
-		
+
 func die():
 	queue_free()
+	get_tree().change_scene_to_file("res://end_screen.tscn")

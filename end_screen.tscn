@@ -1,0 +1,95 @@
+[gd_scene load_steps=5 format=3 uid="uid://dmf1ovsjte2pa"]
+
+[ext_resource type="Texture2D" uid="uid://4bd1n2ddslg4" path="res://assets/scenario/space_spheremaps/blue_nebulae_1.png" id="1_my301"]
+[ext_resource type="Script" uid="uid://i064raqrmon5" path="res://end_screen.gd" id="1_pmjk2"]
+[ext_resource type="FontFile" uid="uid://b8qutxe83je4" path="res://fontes/04B_20__.TTF" id="2_abjgy"]
+[ext_resource type="Theme" uid="uid://3t38oq8ja4h5" path="res://inicialbuttons.tres" id="3_xu7hh"]
+
+[node name="end_screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1152.0
+offset_bottom = 648.0
+stretch = true
+script = ExtResource("1_pmjk2")
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(2304, 1296)
+render_target_update_mode = 4
+
+[node name="BG_Endscreen" type="TextureRect" parent="SubViewportContainer/SubViewport"]
+offset_left = -4504.0
+offset_top = -2693.0
+offset_right = 3688.0
+offset_bottom = 1403.0
+texture = ExtResource("1_my301")
+
+[node name="txtGameOver" type="Label" parent="SubViewportContainer/SubViewport"]
+offset_left = 303.5
+offset_top = 100.0
+offset_right = 848.5
+offset_bottom = 238.0
+theme_override_fonts/font = ExtResource("2_abjgy")
+theme_override_font_sizes/font_size = 44
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="txtScore" type="Label" parent="SubViewportContainer/SubViewport"]
+offset_left = 128.5
+offset_top = 300.0
+offset_right = 478.5
+offset_bottom = 400.0
+theme_override_fonts/font = ExtResource("2_abjgy")
+theme_override_font_sizes/font_size = 25
+text = "Score:
+350"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="txtHighScore" type="Label" parent="SubViewportContainer/SubViewport"]
+offset_left = 673.5
+offset_top = 300.0
+offset_right = 1023.5
+offset_bottom = 400.0
+theme_override_fonts/font = ExtResource("2_abjgy")
+theme_override_font_sizes/font_size = 25
+text = "High Score:
+350"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="btnPlayAgain" type="Button" parent="SubViewportContainer/SubViewport"]
+offset_left = 125.0
+offset_top = 450.0
+offset_right = 510.0
+offset_bottom = 473.0
+theme = ExtResource("3_xu7hh")
+theme_override_fonts/font = ExtResource("2_abjgy")
+text = "Jogar novamente"
+
+[node name="btnExit" type="Button" parent="SubViewportContainer/SubViewport"]
+offset_left = 642.0
+offset_top = 450.0
+offset_right = 1027.0
+offset_bottom = 473.0
+theme = ExtResource("3_xu7hh")
+theme_override_fonts/font = ExtResource("2_abjgy")
+text = "Sair"
+
+[connection signal="pressed" from="SubViewportContainer/SubViewport/btnPlayAgain" to="SubViewportContainer" method="_on_btn_play_again_pressed"]
+[connection signal="pressed" from="SubViewportContainer/SubViewport/btnExit" to="SubViewportContainer" method="_on_btn_exit_pressed"]

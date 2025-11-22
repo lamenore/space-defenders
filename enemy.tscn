@@ -9,6 +9,7 @@ height = 1.3862915
 
 [node name="Enemy" type="CharacterBody3D" groups=["enemies"]]
 script = ExtResource("1_4gyqm")
+speed = 5.0
 
 [node name="LowPoly_SpiderBot_Rzenn" parent="." instance=ExtResource("1_7k104")]
 transform = Transform3D(-7.649493e-09, -0.175, 0, -0.175, 7.649493e-09, 1.5298985e-08, -1.5298985e-08, 6.687399e-16, -0.175, 0, 0, 0)

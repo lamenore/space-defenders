@@ -1,10 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://cs53ncjebicr3"]
+[gd_scene load_steps=18 format=3 uid="uid://cs53ncjebicr3"]
 
 [ext_resource type="Texture2D" uid="uid://k06jglv6j28v" path="res://assets/scenario/space_spheremaps/ringed_gas_giant_planet.png" id="1_ymmf7"]
 [ext_resource type="PackedScene" uid="uid://vbcw6d8w5sta" path="res://player.tscn" id="2_aslnn"]
 [ext_resource type="PackedScene" uid="uid://blbx3bxv7u3vj" path="res://scenes/pause_menu.tscn" id="3_gi2gs"]
 [ext_resource type="PackedScene" uid="uid://bevhdw5bai6pd" path="res://enemy.tscn" id="3_rsg4w"]
 [ext_resource type="Script" uid="uid://bt4gep170ejvr" path="res://enemy_spawner.gd" id="4_01qb0"]
+[ext_resource type="Script" uid="uid://crp8tqw40ootw" path="res://hud.gd" id="5_43f66"]
+[ext_resource type="FontFile" uid="uid://b8qutxe83je4" path="res://fontes/04B_20__.TTF" id="5_phf5m"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_aslnn"]
 panorama = ExtResource("1_ymmf7")
@@ -95,5 +97,17 @@ enemy_scene = ExtResource("3_rsg4w")
 [node name="Timer" type="Timer" parent="Background/EnemySpawner"]
 wait_time = 2.0
 autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Background"]
+script = ExtResource("5_43f66")
+
+[node name="txtScore" type="Label" parent="Background/CanvasLayer"]
+offset_left = 1075.0
+offset_top = 20.0
+offset_right = 1125.0
+offset_bottom = 45.0
+theme_override_fonts/font = ExtResource("5_phf5m")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="pausemenu" parent="." instance=ExtResource("3_gi2gs")]

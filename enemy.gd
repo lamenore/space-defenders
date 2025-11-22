@@ -13,16 +13,6 @@ func _physics_process(_delta):
 	var direction = Vector3(0, 0, -1)
 	velocity = direction.normalized() * speed
 	move_and_slide()
-	
-	#for i in get_slide_collision_count():
-		#var collision = get_slide_collision(i)
-		#var other = collision.get_collider()
-		#if other and other.is_in_group("player") and not has_hit_player:
-			#has_hit_player = true
-			#other.take_damage(1)
-			#$CollisionShape3D.disabled = true
-			#queue_free()
-			#break
 
 func _on_screen_exited():
 	queue_free()
@@ -33,4 +23,9 @@ func _on_area_3d_body_entered(body):
 		body.take_damage(35)
 		$Area3D/CollisionShape3D.set_deferred("disabled", true)
 		queue_free()
-		
+	if body.is_in_group("projetil") and not has_hit_player:
+		has_hit_player = true
+		$Area3D/CollisionShape3D.set_deferred("disabled", true)
+		body.queue_free()
+		Score.add_pontos(10)
+		queue_free()

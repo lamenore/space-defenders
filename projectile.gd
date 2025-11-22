@@ -18,14 +18,5 @@ func _physics_process(_delta: float) -> void:
 	velocity = direction.normalized() * SPEED
 	move_and_slide()
 
-
 func _on_screen_exited() -> void:
-	queue_free()
-
-func take_damage(amount: int):
-	vida -= amount
-	if vida <= 0:
-		die()
-		
-func die():
 	queue_free()

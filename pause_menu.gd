@@ -2,7 +2,6 @@ extends CanvasLayer
 
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	visible = false
 	
@@ -23,7 +22,8 @@ func _unhandled_input(event):
 		
 
 func _on_quitbutton_pressed() -> void:
-		get_tree().change_scene_to_file #mudar para a cena do menu
+		get_tree().paused = false
+		get_tree().change_scene_to_file("res://inicialscreen/inicial_screen.tscn")
 
 
 func _on_settingsbutton_pressed() -> void:

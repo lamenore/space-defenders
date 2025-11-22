@@ -1,4 +1,19 @@
-[gd_scene format=3 uid="uid://bs5rlesowhbiu"]
+[gd_scene load_steps=8 format=3 uid="uid://bs5rlesowhbiu"]
+
+[ext_resource type="ArrayMesh" uid="uid://b34yko7km5cgo" path="res://assets/spaceships/Interstellar Runner/InterstellarRunner.obj" id="1_r870k"]
+[ext_resource type="Texture2D" uid="uid://4bd1n2ddslg4" path="res://assets/scenario/space_spheremaps/blue_nebulae_1.png" id="1_s56cu"]
+[ext_resource type="Theme" uid="uid://3t38oq8ja4h5" path="res://inicialbuttons.tres" id="4_0ycyg"]
+[ext_resource type="Script" uid="uid://b7d545eq8k1yu" path="res://inicialscreen/sub_viewport_container.gd" id="5_c0se1"]
+[ext_resource type="FontFile" uid="uid://b8qutxe83je4" path="res://fontes/04B_20__.TTF" id="5_dv46m"]
+
+[sub_resource type="Environment" id="Environment_xe0ml"]
+background_mode = 3
+ambient_light_color = Color(0.00078581873, 0.057167478, 0.3533362, 1)
+tonemap_mode = 2
+glow_enabled = true
+glow_bloom = 0.1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4lose"]
 
 [node name="InicialScreen" type="Control"]
 layout_mode = 3
@@ -8,33 +23,139 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="logo" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -77.0
+grow_vertical = 0
+size_flags_horizontal = 0
+
 [node name="bg" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4504.0
+offset_top = -2693.0
+offset_right = 2536.0
+offset_bottom = 755.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_s56cu")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+custom_minimum_size = Vector2(600, 500)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+offset_top = -2.0
+offset_right = -3.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+stretch = true
+script = ExtResource("5_c0se1")
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(0.5731941, -0.32934225, 0.75032145, 0.0049297903, 0.9170437, 0.3987564, -0.81940484, -0.22486588, 0.52726763, 6.925882, 6.102111, 5.5636106)
+fov = 30.9375
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport"]
+environment = SubResource("Environment_xe0ml")
+
+[node name="spaceship" type="Node3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5341034)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport/spaceship"]
+transform = Transform3D(0.9675374, 8.176176e-09, -0.25272804, 0.19140607, 0.6529978, 0.73277396, 0.16503087, -0.75735986, 0.6317997, -12.944162, 0.82871866, 6.607487)
+shadow_enabled = true
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="SubViewportContainer/SubViewport/spaceship"]
+transform = Transform3D(0.9971642, -0.075257204, 0, 0.075257204, 0.9971642, 0, 0, 0, 1, 4.9875197, 1.2586884, 4.6210027)
+light_energy = 14.412
+omni_range = 6.0892897
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/spaceship"]
+transform = Transform3D(0.9992908, -0.037655305, 0, 0.037655305, 0.9992908, 0, 0, 0, 1, -0.3109269, 3.1775713, -3.505132)
+light_color = Color(0.8039216, 0.4392157, 0.039215688, 1)
+light_energy = 14.412
+omni_range = 2.2785468
+
+[node name="InterstellarRunner" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/spaceship"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0858917, 2.0642586, 2.7558732)
+mesh = ExtResource("1_r870k")
+skeleton = NodePath("../..")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -409.0
+offset_top = -184.0
+offset_right = -12.0
+offset_bottom = -36.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
-
-[node name="logo" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 31
 
 [node name="selectbutton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("4_0ycyg")
 text = "Select Level"
 
-[node name="Quit" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="quitbutton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("4_0ycyg")
 text = "Quit
 "
 
-[node name="spaceship" type="TextureRect" parent="MarginContainer/HBoxContainer"]
-layout_mode = 2
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 62.0
+offset_top = -195.0
+offset_right = 607.0
+offset_bottom = -57.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.42192736, 0.047538206, 0.5437727, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("5_dv46m")
+theme_override_font_sizes/font_size = 44
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4lose")
+text = "Space
+
+		Defenders"
+uppercase = true
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/selectbutton" to="SubViewportContainer" method="_on_selectbutton_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/quitbutton" to="SubViewportContainer" method="_on_quitbutton_pressed"]

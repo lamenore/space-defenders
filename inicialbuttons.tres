@@ -1,0 +1,32 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://3t38oq8ja4h5"]
+
+[ext_resource type="FontFile" uid="uid://b8qutxe83je4" path="res://fontes/04B_20__.TTF" id="1_mv2vn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mv2vn"]
+bg_color = Color(0.1508314, 0.055287793, 0.13596931, 1)
+border_width_left = 3
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.2105172, 0.064313486, 0.24941275, 1)
+corner_radius_top_left = 20
+corner_radius_bottom_right = 20
+expand_margin_left = 25.0
+expand_margin_top = 10.0
+expand_margin_right = 25.0
+expand_margin_bottom = 10.0
+shadow_color = Color(0.89600503, 0.74074876, 0.9447844, 0.6)
+
+[resource]
+Button/colors/font_color = Color(0.65882355, 0.65882355, 0.65882355, 1)
+Button/colors/font_focus_color = Color(0.3919461, 0.32938942, 0.9377713, 1)
+Button/colors/font_hover_color = Color(0.3919461, 0.32938942, 0.9377713, 1)
+Button/colors/font_pressed_color = Color(0.3919461, 0.32938942, 0.9377713, 1)
+Button/constants/h_separation = 63
+Button/font_sizes/font_size = 19
+Button/fonts/font = ExtResource("1_mv2vn")
+Button/styles/disabled = SubResource("StyleBoxFlat_mv2vn")
+Button/styles/focus = SubResource("StyleBoxFlat_mv2vn")
+Button/styles/hover = SubResource("StyleBoxFlat_mv2vn")
+Button/styles/normal = SubResource("StyleBoxFlat_mv2vn")
+Button/styles/pressed = SubResource("StyleBoxFlat_mv2vn")

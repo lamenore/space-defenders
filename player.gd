@@ -2,13 +2,13 @@ extends CharacterBody3D
 
 @onready var projectile = preload("res://projectile.tscn") 
 @onready var timer = get_node("../Timer")
+@onready var vida = get_tree().get_root().get_node("Fase1/Background/Player/Life/PlayerLife")
+@onready var spriteVida = get_tree().get_root().get_node("Fase1/Background/Player/SpriteVida")
 
 const SPEED = 10
 
 var spawnedProjectiles: Array[Node] = []
 var can_shoot = true
-
-var vida := 3
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -38,6 +38,7 @@ func _physics_process(_delta: float) -> void:
 	
 	move_and_slide()
 	
+	spriteVida.global_position = Vector3(self.global_position.x, self.global_position.y + 1, self.global_position.z - 0.3)
 	
 func _on_timer_timeout():
 	can_shoot = true
@@ -56,8 +57,8 @@ func shoot() -> void:
 	timer.start()
 	
 func take_damage(amount: int):
-	vida -= amount
-	if vida <= 0:
+	vida.value -= amount
+	if vida.value <= 0:
 		die()
 		
 func die():

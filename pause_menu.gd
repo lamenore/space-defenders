@@ -20,4 +20,7 @@ func _on_quitbutton_pressed() -> void:
 		get_tree().change_scene_to_file("res://inicialscreen/inicial_screen.tscn")
 
 func _on_settingsbutton_pressed() -> void:
-	get_tree().change_scene_to_file #mudar para a cena das configurações
+	visible = false
+
+func _on_l_settings_menu_settings_closing() -> void:
+	visible = true

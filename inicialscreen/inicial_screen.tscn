@@ -1,10 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://bs5rlesowhbiu"]
+[gd_scene load_steps=11 format=3 uid="uid://bs5rlesowhbiu"]
 
 [ext_resource type="ArrayMesh" uid="uid://b34yko7km5cgo" path="res://assets/spaceships/Interstellar Runner/InterstellarRunner.obj" id="1_r870k"]
 [ext_resource type="Texture2D" uid="uid://4bd1n2ddslg4" path="res://assets/scenario/space_spheremaps/blue_nebulae_1.png" id="1_s56cu"]
 [ext_resource type="Theme" uid="uid://3t38oq8ja4h5" path="res://inicialbuttons.tres" id="4_0ycyg"]
 [ext_resource type="Script" uid="uid://b7d545eq8k1yu" path="res://inicialscreen/sub_viewport_container.gd" id="5_c0se1"]
 [ext_resource type="FontFile" uid="uid://b8qutxe83je4" path="res://fontes/04B_20__.TTF" id="5_dv46m"]
+[ext_resource type="Script" uid="uid://dq43w8oh6y73x" path="res://scenes/button.gd" id="5_tosf3"]
+[ext_resource type="PackedScene" uid="uid://dgeut5iiear22" path="res://scenes/l_settings_menu.tscn" id="6_dv46m"]
+[ext_resource type="AudioStream" uid="uid://d3nvv2crke57l" path="res://sounds/click.wav" id="6_nsy5b"]
 
 [sub_resource type="Environment" id="Environment_xe0ml"]
 background_mode = 3
@@ -129,6 +132,15 @@ layout_mode = 2
 theme = ExtResource("4_0ycyg")
 text = "Como Jogar"
 
+[node name="settingsbutton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_0ycyg")
+text = "Settings"
+script = ExtResource("5_tosf3")
+
+[node name="Click" type="AudioStreamPlayer" parent="MarginContainer/HBoxContainer/VBoxContainer/settingsbutton"]
+stream = ExtResource("6_nsy5b")
+
 [node name="quitbutton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_0ycyg")
@@ -156,6 +168,14 @@ text = "Space
 		Defenders"
 uppercase = true
 
+[node name="LSettingsMenu" parent="." instance=ExtResource("6_dv46m")]
+visible = false
+
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/selectbutton" to="SubViewportContainer" method="_on_selectbutton_pressed"]
+
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/howtoplaybutton" to="SubViewportContainer" method="_on_howtoplaybutton_pressed"]
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/settingsbutton" to="MarginContainer/HBoxContainer/VBoxContainer/settingsbutton" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/settingsbutton" to="LSettingsMenu" method="_on_settingsbutton_pressed"]
+
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/quitbutton" to="SubViewportContainer" method="_on_quitbutton_pressed"]

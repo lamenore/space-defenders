@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://bf5nfbv5ecjfr"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://bf5nfbv5ecjfr"]
 
 [ext_resource type="FontFile" uid="uid://b8qutxe83je4" path="res://fontes/04B_20__.TTF" id="1_lwe8v"]
 
@@ -11,6 +11,12 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vhphi"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d0h1g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lwe8v"]
+bg_color = Color(0.5400054, 0.55156904, 0.93313515, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_840d5"]
+bg_color = Color(0.63079596, 0.64921254, 0.9382744, 1)
 
 [resource]
 Button/colors/font_color = Color(0.65833926, 0.6583402, 0.65833956, 1)
@@ -25,3 +31,5 @@ Button/styles/focus = SubResource("StyleBoxEmpty_840d5")
 Button/styles/hover = SubResource("StyleBoxEmpty_p201k")
 Button/styles/normal = SubResource("StyleBoxEmpty_vhphi")
 Button/styles/pressed = SubResource("StyleBoxEmpty_d0h1g")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_lwe8v")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_840d5")

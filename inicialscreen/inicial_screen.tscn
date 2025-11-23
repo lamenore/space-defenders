@@ -51,10 +51,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -3.0
-offset_top = -2.0
-offset_right = -3.0
-offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 10
@@ -105,10 +101,8 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -409.0
-offset_top = -184.0
-offset_right = -12.0
-offset_bottom = -36.0
+offset_left = -397.0
+offset_top = -190.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_constants/margin_top = 20
@@ -128,12 +122,17 @@ theme_override_constants/separation = 31
 [node name="selectbutton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_0ycyg")
-text = "Select Level"
+text = "Iniciar Jogo"
+
+[node name="howtoplaybutton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_0ycyg")
+text = "Como Jogar"
 
 [node name="quitbutton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_0ycyg")
-text = "Quit
+text = "Sair
 "
 
 [node name="Label" type="Label" parent="."]
@@ -158,4 +157,5 @@ text = "Space
 uppercase = true
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/selectbutton" to="SubViewportContainer" method="_on_selectbutton_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/howtoplaybutton" to="SubViewportContainer" method="_on_howtoplaybutton_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/quitbutton" to="SubViewportContainer" method="_on_quitbutton_pressed"]

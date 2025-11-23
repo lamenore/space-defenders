@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cs53ncjebicr3"]
+[gd_scene load_steps=19 format=3 uid="uid://cs53ncjebicr3"]
 
 [ext_resource type="Texture2D" uid="uid://k06jglv6j28v" path="res://assets/scenario/space_spheremaps/ringed_gas_giant_planet.png" id="1_ymmf7"]
 [ext_resource type="PackedScene" uid="uid://vbcw6d8w5sta" path="res://player.tscn" id="2_aslnn"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://bt4gep170ejvr" path="res://enemy_spawner.gd" id="4_01qb0"]
 [ext_resource type="Script" uid="uid://crp8tqw40ootw" path="res://hud.gd" id="5_43f66"]
 [ext_resource type="FontFile" uid="uid://b8qutxe83je4" path="res://fontes/04B_20__.TTF" id="5_phf5m"]
+[ext_resource type="PackedScene" uid="uid://dgeut5iiear22" path="res://scenes/l_settings_menu.tscn" id="8_vmdku"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_aslnn"]
 panorama = ExtResource("1_ymmf7")
@@ -17,6 +18,10 @@ sky_material = SubResource("PanoramaSkyMaterial_aslnn")
 [sub_resource type="Environment" id="Environment_rsg4w"]
 background_mode = 2
 sky = SubResource("Sky_gi2gs")
+tonemap_mode = 2
+glow_enabled = true
+glow_normalized = true
+glow_bloom = 0.88
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01qb0"]
 bg_color = Color(0, 0, 0, 1)
@@ -111,3 +116,17 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="pausemenu" parent="." instance=ExtResource("3_gi2gs")]
+layer = 2
+visible = false
+
+[node name="LSettingsMenu" parent="pausemenu" instance=ExtResource("8_vmdku")]
+layer = 2
+visible = false
+
+[connection signal="pressed" from="pausemenu/menuholder/settingsbutton" to="pausemenu/LSettingsMenu" method="_on_settingsbutton_pressed"]
+[connection signal="settings_closing" from="pausemenu/LSettingsMenu" to="pausemenu" method="_on_l_settings_menu_settings_closing"]
+
+[editable path="pausemenu"]
+[editable path="pausemenu/LSettingsMenu"]
+[editable path="pausemenu/LSettingsMenu/VBoxContainer/HBoxContainer/MusicVolumeHSlider"]
+[editable path="pausemenu/LSettingsMenu/VBoxContainer/HBoxContainer2/SfxVolumeHSlider"]

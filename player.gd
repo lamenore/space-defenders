@@ -4,6 +4,9 @@ extends CharacterBody3D
 @onready var timer = get_node("../Timer")
 @onready var vida = get_tree().get_root().get_node("Fase1/Background/Player/Life/PlayerLife")
 @onready var spriteVida = get_tree().get_root().get_node("Fase1/Background/Player/SpriteVida")
+@onready var laserSndPlayer = $"../LaserSound"
+@onready var hitSndPlayer = $"../HitSound"
+@onready var explosionSndPlayer = $"../ExplosionSound"
 
 const SPEED = 10
 
@@ -17,7 +20,7 @@ func _process(_delta: float) -> void:
 	if Input.is_action_pressed("shoot") and can_shoot:
 		shoot()
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	var direction = Vector3.ZERO
 	
 	if Input.is_action_pressed("move_down") or Input.is_action_pressed("ui_down"):
@@ -29,6 +32,7 @@ func _physics_process(_delta: float) -> void:
 		direction = direction.normalized()
 	
 	velocity.y = direction.y * SPEED
+	rotation_degrees.z = move_toward(rotation_degrees.z, -15*direction.y, delta*20*abs(rotation_degrees.z+15*direction.y))
 	
 	direction.x = 0
 	
@@ -50,13 +54,17 @@ func shoot() -> void:
 	
 	spawnedProjectiles.append(newProjectile)
 	
+	laserSndPlayer.play()
+	
 	timer.start()
 	
 func take_damage(amount: int):
 	vida.value -= amount
+	hitSndPlayer.play()
 	if vida.value <= 0:
 		die()
 
 func die():
+	explosionSndPlayer.play()
 	queue_free()
-	get_tree().change_scene_to_file("res://end_screen.tscn")
+	get_tree().call_deferred("change_scene_to_file", "res://end_screen.tscn")

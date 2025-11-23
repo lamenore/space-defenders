@@ -1,0 +1,116 @@
+[gd_scene load_steps=11 format=3 uid="uid://dgeut5iiear22"]
+
+[ext_resource type="Script" uid="uid://br1gw5me1n5sj" path="res://scenes/l_settings_menu.gd" id="1_ox5eh"]
+[ext_resource type="FontFile" uid="uid://b8qutxe83je4" path="res://fontes/04B_20__.TTF" id="2_3lmyl"]
+[ext_resource type="PackedScene" uid="uid://ds06mwhee8ygm" path="res://ggs/components/slider/component_slider.tscn" id="2_kq06p"]
+[ext_resource type="Resource" uid="uid://s5aiklsskjfi" path="res://ggs/game_settings/music_volume.tres" id="3_wbxq3"]
+[ext_resource type="Resource" uid="uid://c11vudyc12qqs" path="res://ggs/game_settings/sfx_volume.tres" id="4_kq06p"]
+[ext_resource type="Theme" uid="uid://3t38oq8ja4h5" path="res://inicialbuttons.tres" id="5_wbxq3"]
+[ext_resource type="Theme" uid="uid://bf5nfbv5ecjfr" path="res://fontes/layout-button/pause_menu.tres" id="5_wlfbr"]
+[ext_resource type="Script" uid="uid://dq43w8oh6y73x" path="res://scenes/button.gd" id="8_gk2xh"]
+[ext_resource type="AudioStream" uid="uid://d3nvv2crke57l" path="res://sounds/click.wav" id="9_bytn7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wlfbr"]
+bg_color = Color(0.2262, 0.221, 0.26, 0.80784315)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="LSettingsMenu" type="CanvasLayer"]
+script = ExtResource("1_ox5eh")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wlfbr")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 19.0
+offset_top = 18.0
+offset_right = -15.0
+offset_bottom = 139.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="MusicVolumeTextLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_fonts/font = ExtResource("2_3lmyl")
+theme_override_font_sizes/font_size = 32
+text = "Music"
+
+[node name="MusicVolumeHSlider" parent="VBoxContainer/HBoxContainer" instance=ExtResource("2_kq06p")]
+layout_mode = 2
+size_flags_horizontal = 3
+setting = ExtResource("3_wbxq3")
+
+[node name="Slider" parent="VBoxContainer/HBoxContainer/MusicVolumeHSlider" index="0"]
+size_flags_horizontal = 1
+theme = ExtResource("5_wlfbr")
+
+[node name="MusicVolumeNumLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_3lmyl")
+text = "100.0"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="SfxVolumeTextLabel" type="Label" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_fonts/font = ExtResource("2_3lmyl")
+theme_override_font_sizes/font_size = 32
+text = "Sound FXs"
+
+[node name="SfxVolumeHSlider" parent="VBoxContainer/HBoxContainer2" instance=ExtResource("2_kq06p")]
+layout_mode = 2
+size_flags_horizontal = 3
+setting = ExtResource("4_kq06p")
+
+[node name="Slider" parent="VBoxContainer/HBoxContainer2/SfxVolumeHSlider" index="0"]
+size_flags_horizontal = 1
+theme = ExtResource("5_wlfbr")
+
+[node name="SfxVolumeNumLabel" type="Label" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_3lmyl")
+text = "100.0"
+
+[node name="Quit" type="Button" parent="."]
+offset_left = 35.0
+offset_top = 166.0
+offset_right = 152.0
+offset_bottom = 189.0
+size_flags_horizontal = 0
+theme = ExtResource("5_wbxq3")
+text = "Close"
+script = ExtResource("8_gk2xh")
+
+[node name="Click" type="AudioStreamPlayer" parent="Quit"]
+stream = ExtResource("9_bytn7")
+bus = &"Sfx"
+
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer/MusicVolumeHSlider/Slider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer2/SfxVolumeHSlider/Slider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Quit" to="Quit" method="_on_pressed"]
+
+[editable path="VBoxContainer/HBoxContainer/MusicVolumeHSlider"]
+[editable path="VBoxContainer/HBoxContainer2/SfxVolumeHSlider"]

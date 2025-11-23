@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://blbx3bxv7u3vj"]
+[gd_scene load_steps=8 format=3 uid="uid://blbx3bxv7u3vj"]
 
 [ext_resource type="Script" uid="uid://bdmcrfijok6a5" path="res://pause_menu.gd" id="1_3otxd"]
 [ext_resource type="Theme" uid="uid://bf5nfbv5ecjfr" path="res://fontes/layout-button/pause_menu.tres" id="2_myx47"]
+[ext_resource type="Script" uid="uid://dq43w8oh6y73x" path="res://scenes/button.gd" id="3_5d2l8"]
+[ext_resource type="AudioStream" uid="uid://d3nvv2crke57l" path="res://sounds/click.wav" id="4_7l7mv"]
 
 [sub_resource type="Theme" id="Theme_myx47"]
 
@@ -47,19 +49,33 @@ size_flags_vertical = 4
 theme = ExtResource("2_myx47")
 shortcut = SubResource("Shortcut_r33we")
 text = "Resumo"
+script = ExtResource("3_5d2l8")
+
+[node name="Click" type="AudioStreamPlayer" parent="menuholder/resumebutton"]
+stream = ExtResource("4_7l7mv")
 
 [node name="settingsbutton" type="Button" parent="menuholder"]
 layout_mode = 2
 theme = ExtResource("2_myx47")
 text = "Settings
 "
+script = ExtResource("3_5d2l8")
+
+[node name="Click" type="AudioStreamPlayer" parent="menuholder/settingsbutton"]
+stream = ExtResource("4_7l7mv")
 
 [node name="quitbutton" type="Button" parent="menuholder"]
 layout_mode = 2
 theme = ExtResource("2_myx47")
 text = "Sair"
+script = ExtResource("3_5d2l8")
+
+[node name="Click" type="AudioStreamPlayer" parent="menuholder/quitbutton"]
+stream = ExtResource("4_7l7mv")
 
 [connection signal="pressed" from="menuholder/resumebutton" to="." method="_on_resumebutton_pressed"]
-[connection signal="pressed" from="menuholder/settingsbutton" to="." method="_on_quitbutton_pressed"]
+[connection signal="pressed" from="menuholder/resumebutton" to="menuholder/resumebutton" method="_on_pressed"]
 [connection signal="pressed" from="menuholder/settingsbutton" to="." method="_on_settingsbutton_pressed"]
+[connection signal="pressed" from="menuholder/settingsbutton" to="menuholder/settingsbutton" method="_on_pressed"]
 [connection signal="pressed" from="menuholder/quitbutton" to="." method="_on_quitbutton_pressed"]
+[connection signal="pressed" from="menuholder/quitbutton" to="menuholder/quitbutton" method="_on_pressed"]

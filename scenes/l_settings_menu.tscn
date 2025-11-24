@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dgeut5iiear22"]
+[gd_scene load_steps=14 format=3 uid="uid://dgeut5iiear22"]
 
 [ext_resource type="Script" uid="uid://br1gw5me1n5sj" path="res://scenes/l_settings_menu.gd" id="1_ox5eh"]
 [ext_resource type="FontFile" uid="uid://b8qutxe83je4" path="res://fontes/04B_20__.TTF" id="2_3lmyl"]
@@ -7,8 +7,11 @@
 [ext_resource type="Resource" uid="uid://c11vudyc12qqs" path="res://ggs/game_settings/sfx_volume.tres" id="4_kq06p"]
 [ext_resource type="Theme" uid="uid://3t38oq8ja4h5" path="res://inicialbuttons.tres" id="5_wbxq3"]
 [ext_resource type="Theme" uid="uid://bf5nfbv5ecjfr" path="res://fontes/layout-button/pause_menu.tres" id="5_wlfbr"]
+[ext_resource type="PackedScene" uid="uid://b7m6l0lvojrsj" path="res://ggs/components/option_list/component_option_list.tscn" id="7_gsvgv"]
 [ext_resource type="Script" uid="uid://dq43w8oh6y73x" path="res://scenes/button.gd" id="8_gk2xh"]
+[ext_resource type="Resource" uid="uid://dsef7jxbjd6ky" path="res://ggs/game_settings/display_mode.tres" id="8_rovy6"]
 [ext_resource type="AudioStream" uid="uid://d3nvv2crke57l" path="res://sounds/click.wav" id="9_bytn7"]
+[ext_resource type="Resource" uid="uid://dg8cmfhvub00v" path="res://ggs/game_settings/target_fps.tres" id="10_rovy6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wlfbr"]
 bg_color = Color(0.2262, 0.221, 0.26, 0.80784315)
@@ -31,24 +34,18 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_wlfbr")
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 19.0
-offset_top = 18.0
-offset_right = -15.0
-offset_bottom = 139.0
+offset_bottom = 190.0
 grow_horizontal = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
 
 [node name="MusicVolumeTextLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(45, 0)
 layout_mode = 2
 size_flags_horizontal = 2
 theme_override_fonts/font = ExtResource("2_3lmyl")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 text = "Music"
 
 [node name="MusicVolumeHSlider" parent="VBoxContainer/HBoxContainer" instance=ExtResource("2_kq06p")]
@@ -64,7 +61,7 @@ theme = ExtResource("5_wlfbr")
 custom_minimum_size = Vector2(45, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_3lmyl")
-text = "100.0"
+text = "100"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -75,7 +72,7 @@ custom_minimum_size = Vector2(45, 0)
 layout_mode = 2
 size_flags_horizontal = 2
 theme_override_fonts/font = ExtResource("2_3lmyl")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 text = "Sound FXs"
 
 [node name="SfxVolumeHSlider" parent="VBoxContainer/HBoxContainer2" instance=ExtResource("2_kq06p")]
@@ -91,13 +88,69 @@ theme = ExtResource("5_wlfbr")
 custom_minimum_size = Vector2(45, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_3lmyl")
-text = "100.0"
+text = "100"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("5_wlfbr")
+theme_override_font_sizes/font_size = 24
+text = "Display Mode:   "
+
+[node name="OptionList" parent="VBoxContainer/HBoxContainer3" instance=ExtResource("7_gsvgv")]
+layout_mode = 2
+theme = ExtResource("5_wbxq3")
+theme_override_constants/margin_right = 44
+setting = ExtResource("8_rovy6")
+
+[node name="Btn" parent="VBoxContainer/HBoxContainer3/OptionList" index="0"]
+size_flags_vertical = 4
+item_count = 3
+popup/item_0/text = "Fullscreen"
+popup/item_0/id = 0
+popup/item_1/text = "Borderless"
+popup/item_1/id = 1
+popup/item_2/text = "Windowed"
+popup/item_2/id = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("5_wlfbr")
+theme_override_font_sizes/font_size = 24
+text = "Target FPS:"
+
+[node name="TargetFPSHSlider" parent="VBoxContainer/HBoxContainer4" instance=ExtResource("2_kq06p")]
+layout_mode = 2
+size_flags_horizontal = 3
+setting = ExtResource("10_rovy6")
+
+[node name="Slider" parent="VBoxContainer/HBoxContainer4/TargetFPSHSlider" index="0"]
+size_flags_horizontal = 1
+theme = ExtResource("5_wlfbr")
+min_value = 60.0
+max_value = 240.0
+value = 60.0
+
+[node name="TargetFPSNumLabel" type="Label" parent="VBoxContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_3lmyl")
+text = "60"
 
 [node name="Quit" type="Button" parent="."]
-offset_left = 35.0
-offset_top = 166.0
-offset_right = 152.0
-offset_bottom = 189.0
+offset_left = 32.0
+offset_top = 251.0
+offset_right = 149.0
+offset_bottom = 274.0
 size_flags_horizontal = 0
 theme = ExtResource("5_wbxq3")
 text = "Close"
@@ -109,8 +162,11 @@ bus = &"Sfx"
 
 [connection signal="value_changed" from="VBoxContainer/HBoxContainer/MusicVolumeHSlider/Slider" to="." method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/HBoxContainer2/SfxVolumeHSlider/Slider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer4/TargetFPSHSlider/Slider" to="." method="_on_targetfps_slider_value_changed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="Quit" to="Quit" method="_on_pressed"]
 
 [editable path="VBoxContainer/HBoxContainer/MusicVolumeHSlider"]
 [editable path="VBoxContainer/HBoxContainer2/SfxVolumeHSlider"]
+[editable path="VBoxContainer/HBoxContainer3/OptionList"]
+[editable path="VBoxContainer/HBoxContainer4/TargetFPSHSlider"]

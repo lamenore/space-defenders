@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SettingDisplayMode" load_steps=3 format=3 uid="uid://dsef7jxbjd6ky"]
+
+[ext_resource type="Script" uid="uid://brory0hphls2b" path="res://ggs/scripts/display/setting_display_mode.gd" id="1_q0nb0"]
+[ext_resource type="Resource" uid="uid://bvevwrkg5qt2n" path="res://ggs/game_settings/display_size.tres" id="2_ru3xf"]
+
+[resource]
+resource_name = "display_mode"
+script = ExtResource("1_q0nb0")
+size_setting = ExtResource("2_ru3xf")
+key = "display_mode"
+section = "display"
+default = 2
+metadata/_custom_type_script = "uid://brory0hphls2b"

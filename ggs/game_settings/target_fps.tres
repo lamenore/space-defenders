@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SettingMaxFPS" load_steps=2 format=3 uid="uid://dg8cmfhvub00v"]
+
+[ext_resource type="Script" uid="uid://vi08js4kg335" path="res://ggs/scripts/display/setting_maxfps.gd" id="1_foh2l"]
+
+[resource]
+resource_name = "fps"
+script = ExtResource("1_foh2l")
+key = "fps"
+section = "display"
+default = 60
+metadata/_custom_type_script = "uid://vi08js4kg335"

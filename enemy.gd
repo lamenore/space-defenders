@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 @export var speed := 3.0
 var has_hit_player = false
+signal enemy_died
 
 func _ready():
 	$VisibleOnScreenNotifier3D.screen_exited.connect(_on_screen_exited)
@@ -27,5 +28,6 @@ func _on_area_3d_body_entered(body):
 		has_hit_player = true
 		$Area3D/CollisionShape3D.set_deferred("disabled", true)
 		body.queue_free()
+		enemy_died.emit()
 		Score.add_pontos(10)
 		queue_free()

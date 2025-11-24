@@ -5,7 +5,7 @@
 [resource]
 resource_name = "music_volume"
 script = ExtResource("1_56mwy")
-audio_bus = "Master"
+audio_bus = "Music"
 key = "music_volume"
 section = "audio"
 default = 80.0

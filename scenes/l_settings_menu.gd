@@ -22,3 +22,7 @@ func _on_quit_pressed() -> void:
 
 func _on_settingsbutton_pressed() -> void:
 	visible = true
+
+
+func _on_targetfps_slider_value_changed(value: int) -> void:
+	$VBoxContainer/HBoxContainer4/TargetFPSNumLabel.text = str(value)

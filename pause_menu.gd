@@ -9,7 +9,8 @@ func _process(_delta: float) -> void:
 func _on_resumebutton_pressed() -> void:
 	get_tree().paused=false
 	visible = false
-
+	$LSettingsMenu.visible = false
+	
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
 		visible = true

@@ -168,8 +168,9 @@ theme_override_constants/line_spacing = 30
 theme_override_fonts/font = ExtResource("2_w14oq")
 theme_override_font_sizes/font_size = 53
 text = "Para disparar com a nave, 
-use a tecla \"Space\" do teclado ou o clique
-esquerdo do mouse"
+use a tecla \"Space\" do teclado,o clique
+esquerdo do mouse, a tecla \"x\" 
+ou a tecla \"Enter\""
 
 [node name="vidaevitoria" type="HBoxContainer" parent="."]
 layout_mode = 1
